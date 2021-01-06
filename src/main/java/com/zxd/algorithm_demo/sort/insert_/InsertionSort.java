@@ -1,4 +1,4 @@
-package com.zxd.algorithm_demo.sort;
+package com.zxd.algorithm_demo.sort.insert_;
 
 import java.util.Arrays;
 
