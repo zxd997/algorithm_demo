@@ -6,12 +6,20 @@ import java.util.Arrays;
  * Created by Zxd on 2021/1/5 11:08
  */
 //快速排序
+    //分治算法
+    //时间复杂度：O(n) = 切分次数*每次时间复杂度 = logn * n
+    //最坏情况：每次切分都是从最左边或者最右边 切分次数就是 n  结果n2
+    //最好情况：每次切分都是等分 就是logn 结果nlogn
+    //平均情况：数学归纳法 得出也是nlogn
 public class QuickSort {
     public static void sort(Comparable[] a) {
         sort(a, 0, a.length - 1);
     }
 
     public static void sort(Comparable[] a, int lo, int hi) {
+        if (hi < lo) {
+            return;
+        }
         //以lo为基准，切分成两部分，左边比基准数小，右边比基准数大，并返回分好后的lo的索引
         int keyIndex = partition(a, lo, hi);
         //左边排序
@@ -30,8 +38,26 @@ public class QuickSort {
         int left = lo;
         int right = hi+1;
         while (true) {
-
+            while (less(key,a[--right])) {
+                if (right == lo) {
+                    break;
+                }
+            }
+            while (less(a[++left],key)) {
+                if (left >= right) {//由left == hi 优化得到
+                    break;
+                }
+            }
+            if (right <= left) {
+                break;
+            } else {
+                exchange(a, left, right);
+            }
         }
+        if (lo < right) {
+            exchange(a, lo, right);
+        }
+        return right;
     }
 
     public static boolean less(Comparable v, Comparable w) {
@@ -48,7 +74,8 @@ public class QuickSort {
 
     public static void main(String[] args) {
         Integer[] arr = {8,7,6,5,4,3,2,1};
+        System.out.println("原数据："+Arrays.toString(arr));
         QuickSort.sort(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("排序后："+Arrays.toString(arr));
     }
 }

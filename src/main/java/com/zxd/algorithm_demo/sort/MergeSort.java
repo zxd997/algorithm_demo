@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Created by Zxd on 2021/1/5 11:08
  */
 //归并排序
+    //分治算法
     //空间换时间
     //时间复杂度 =层数*每次比较次数=log2n*2^log2n = nlogn =O（nlogn）
     //空间复杂度 = O(n)
